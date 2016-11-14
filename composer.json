@@ -1,0 +1,22 @@
+{
+    "name": "htmlburger/carbon-form",
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "htmlBurger",
+            "email": "info@htmlburger.com"
+        }
+    ],
+
+    "require": {
+    	"php": "^5.3.0 || ^7.0",
+        "phpmailer/phpmailer": "^5.2"
+    },
+    
+    "autoload": {
+        "psr-4": {
+            "CarbonForms\\": "CarbonForms"
+        }
+    }
+}

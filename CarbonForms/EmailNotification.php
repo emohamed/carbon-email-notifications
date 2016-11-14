@@ -46,7 +46,7 @@ class EmailNotification {
 	function __construct($settings=[]) {
 		$settings = array_merge($this->base_settings, $settings);
 
-		$mailer = new PhpMailer();
+		$mailer = new \PHPMailer();
 		$mailer->isHTML(true);
 
 		$mailer->From     = $settings['from'];
@@ -74,6 +74,7 @@ class EmailNotification {
 		}
 
 		$this->mailer = $mailer;
+		$this->set_template($settings['template']);
 	}
 
 	public function set_template($file) {
@@ -93,11 +94,11 @@ class EmailNotification {
 	 * @param $template string path to the template file
 	 * @param $context $context array with the variables used in the template
 	 */
-	function render_message($template, $context) {
+	function render_message($context) {
 		extract($context);
 
 		ob_start();
-		include($template);
+		include($this->template);
 		$html = ob_get_contents();
 		ob_end_clean();
 
@@ -150,7 +151,7 @@ class EmailNotification {
 			'fields' => $fields,
 		]);
 
-		$result = $this->mail->send();
+		$result = $this->mailer->send();
 
 		if (!$result) {
 			$this->error = $this->mail->ErrorInfo;

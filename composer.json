@@ -2,6 +2,8 @@
     "name": "emohamed/carbon-email-notification",
     "license": "MIT",
 
+    "minimum-stability": "dev",
+    
     "authors": [
         {
             "name": "Emil Mohamed",

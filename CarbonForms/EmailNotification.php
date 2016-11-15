@@ -154,7 +154,7 @@ class EmailNotification {
 		$result = $this->mailer->send();
 
 		if (!$result) {
-			$this->error = $this->mail->ErrorInfo;
+			throw new MailDeliveryException($this->mailer->ErrorInfo);
 		}
 
 		return $result;

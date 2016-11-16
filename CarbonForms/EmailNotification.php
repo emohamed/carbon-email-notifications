@@ -60,7 +60,7 @@ class EmailNotification {
 
 		$mailer->Subject = $settings['subject'];
 
-		if (isset($settings['smtp_config'])) {
+		if (isset($settings['smtp_config']) && $settings['smtp_config']['enable']) {
 			$smtp_config = $settings['smtp_config'];
 
 			$mailer->isSMTP();

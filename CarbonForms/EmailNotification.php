@@ -9,7 +9,7 @@ class EmailNotification {
 	 * Settings
 	 */
 	private $base_settings = [
-		'recepients'  => [],
+		'recipients'  => [],
 		'from'        => '',
 		'from_name'   => '',
 		'subject'     => '',
@@ -52,9 +52,9 @@ class EmailNotification {
 		$mailer->From     = $settings['from'];
 		$mailer->FromName = $settings['from_name'];
 
-		$recepients = $this->normalize_recepients($settings['recepients']);
+		$recipients = $this->normalize_recipients($settings['recipients']);
 
-		foreach ($recepients as $email => $name) {
+		foreach ($recipients as $email => $name) {
 			$mailer->AddAddress($email, $name);
 		}
 
@@ -113,24 +113,24 @@ class EmailNotification {
 	 *  * ["johndoe@gmail.com", "doejane@gmail.com"]
 	 *  * ["johndoe@gmail.com" => "John Doe", "doejane@gmail.com"]
 	 */
-	protected function normalize_recepients($recepients) {
+	protected function normalize_recipients($recipients) {
 		$result = array();
 
 		// Scalar strings are supported
-		$recepients = (array)$recepients;
+		$recipients = (array)$recipients;
 
-		foreach ($recepients as $key => $value) {
-			// Allow recepients to be passed as
+		foreach ($recipients as $key => $value) {
+			// Allow recipients to be passed as
 			// ["user@gmail.com"] or ["user@gmail.com" => "User Name"]
 			if (is_numeric($key)) {
-				$recepient_mail = $value;
-				$recepient_name = '';
+				$recipient_mail = $value;
+				$recipient_name = '';
 			} else {
-				$recepient_mail = $key;
-				$recepient_name = $value;
+				$recipient_mail = $key;
+				$recipient_name = $value;
 			}
 
-			$result[$recepient_mail] = $recepient_name;
+			$result[$recipient_mail] = $recipient_name;
 		}
 
 		return $result;

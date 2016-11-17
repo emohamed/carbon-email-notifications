@@ -48,6 +48,7 @@ class EmailNotification {
 
 		$mailer = new \PHPMailer();
 		$mailer->isHTML(true);
+		$mailer->charSet = "UTF-8"; 
 
 		$mailer->From     = $settings['from'];
 		$mailer->FromName = $settings['from_name'];

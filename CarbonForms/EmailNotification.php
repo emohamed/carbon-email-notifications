@@ -141,6 +141,9 @@ class EmailNotification {
 	 * Add an attachment to the message
 	 */
 	function attach($file_path, $display_name) {
+		if (!file_exists($file_path)) {
+			throw new MailDeliveryException("Attachment file doesn't exists: $file_path");
+		}
 		$this->mailer->AddAttachment($file_path, $display_name);
 	}
 

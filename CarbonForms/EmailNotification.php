@@ -8,24 +8,7 @@ class EmailNotification {
 	/**
 	 * Settings
 	 */
-	private $base_settings = [
-		'recipients'  => [],
-		'from'        => '',
-		'from_name'   => '',
-		'subject'     => '',
-
-		'template'    => __DIR__ . '/../email-templates/form.php',
-
-		'smtp_config' => [
-			'enable'     => false,
-			'host'       => '',
-			'port'       => '',
-			'username'   => '',
-			'password'   => '',
-			'encryption' => '',
-
-		],
-	];
+	private $base_settings;
 
 	/**
 	 * Path to the template file
@@ -44,6 +27,25 @@ class EmailNotification {
 	public $error;
 
 	function __construct($settings=[]) {
+		$this->base_settings = [
+			'recipients'  => [],
+			'from'        => '',
+			'from_name'   => '',
+			'subject'     => '',
+
+			'template'    => __DIR__ . '/../email-templates/form.php',
+
+			'smtp_config' => [
+				'enable'     => false,
+				'host'       => '',
+				'port'       => '',
+				'username'   => '',
+				'password'   => '',
+				'encryption' => '',
+
+			],
+		];
+
 		$settings = array_merge($this->base_settings, $settings);
 
 		$mailer = new \PHPMailer();
